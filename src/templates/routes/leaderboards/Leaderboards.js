@@ -53,14 +53,14 @@ export default function Leaderboards(props) {
         console.log('refreshing data ...')
         setRefresh(true)
 
-        axios.post('http://localhost:3001/dates', {
+        axios.post('https://atlas-website-backend.herokuapp.com/dates', {
             selectedMonth: month,
             selectedYear: year,
             backup: backup,
         })
         .then(console.log('dates posted successfully !'))
 
-        axios.get('http://localhost:3001/refresh-data')
+        axios.get('https://atlas-website-backend.herokuapp.com/refresh-data')
         .then(res => {
             if(res){
                 console.log(res)

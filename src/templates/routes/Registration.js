@@ -20,7 +20,7 @@ export default function Registration(props) {
         }
 
         async function uploadUser(userData) {
-            const upload = await axios.post('http://localhost:3001/add-user', userData)
+            const upload = await axios.post('https://atlas-website-backend.herokuapp.com/add-user', userData)
             console.log('User posted to user-API!')
         }
         uploadUser(user)

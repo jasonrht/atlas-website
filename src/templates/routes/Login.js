@@ -17,7 +17,7 @@ export default function Login({setLoginStatus}) {
         
         async function checkUsers(loginData) {
             let authenticated = false
-            const users = await axios.post('http://localhost:3001/users/login', loginData)
+            const users = await axios.post('https://atlas-website-backend.herokuapp.com/users/login', loginData)
                                 .then(res => {
                                     authenticated = res.data.authenticated
                                     if(authenticated) {

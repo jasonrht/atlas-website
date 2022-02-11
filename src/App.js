@@ -15,7 +15,7 @@ function App() {
 
   React.useEffect(() => {
     try {
-      fetch("http://localhost:3001/api")
+      fetch("https://atlas-website-backend.herokuapp.com/api")
       .then((res) => res.json())
       .then((apiData) => {
         setApiData(apiData.data)
@@ -26,7 +26,7 @@ function App() {
     }
   }, []);
 
-  axios.get('http://localhost:3001/userAuth', {
+  axios.get('https://atlas-website-backend.herokuapp.com/userAuth', {
     headers: {
       'authorization': localStorage.getItem('token')
     }}

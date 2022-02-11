@@ -26,7 +26,7 @@ export default function Wervers(props) {
             poule: poule,
         }
         async function uploadWerver(werverData) {
-            const upload = await axios.post('http://localhost:3001/add-werver', werverData)
+            const upload = await axios.post('https://atlas-website-backend.herokuapp.com/add-werver', werverData)
             console.log('new werver added !')
         }
         uploadWerver(werver)
