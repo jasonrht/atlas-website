@@ -1,5 +1,6 @@
 import './styling/App.css';
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query'
 import Navigation from './Navigation';
 import Leaderboards from './templates/routes/leaderboards/Leaderboards';
 import Registration from './templates/routes/Registration';
@@ -8,20 +9,26 @@ import Wervers from './templates/routes/Wervers';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import BackupLBs from './templates/routes/BackupLBs';
+import Tables from './templates/routes/Tables';
+import Pasjes from './templates/routes/Pasjes';
+
+
+const queryClient = new QueryClient()
 
 function App() {
-  const [apiData, setApiData] = React.useState({data: null});
+  const [apiData, setApiData] = React.useState({ data: null });
   const [loginStatus, setLoginStatus] = React.useState(false);
+  const [data, setData] = React.useState([])
 
   React.useEffect(() => {
     try {
       fetch("https://atlas-website-backend.herokuapp.com/api")
-      .then((res) => res.json())
-      .then((apiData) => {
-        setApiData(apiData.data)
-        console.log('api data fetched and set !')
-      });
-    } catch(e) {
+        .then((res) => res.json())
+        .then((apiData) => {
+          setApiData(apiData.data)
+          console.log('api data fetched and set !')
+        });
+    } catch (e) {
       console.log(e)
     }
   }, []);
@@ -29,9 +36,10 @@ function App() {
   axios.get('https://atlas-website-backend.herokuapp.com/userAuth', {
     headers: {
       'authorization': localStorage.getItem('token')
-    }}
+    }
+  }
   ).then(res => {
-    if(res.data === null) {
+    if (res.data === null) {
       setLoginStatus(false)
     }
     else {
@@ -41,27 +49,31 @@ function App() {
 
   console.log(`loginStatus: ${loginStatus}`)
 
-  if(!loginStatus) {
+  if (!loginStatus) {
     return (
       <>
-        <Navigation status={loginStatus}/>
-        <Login setLoginStatus={setLoginStatus}/>
+        <Navigation status={loginStatus} />
+        <Login setLoginStatus={setLoginStatus} />
       </>
     )
   } else {
-      return (
-        <>
-        <Navigation status={loginStatus} />
-        
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Registration data={apiData} />} />
-          <Route path='/leaderboards' element={<Leaderboards data={apiData} />} />
-          <Route path='/wervers' element={<Wervers data={apiData} />} />
-          <Route path='/backup-lbs' element={<BackupLBs />} />
-        </Routes>
-        </>
-      );
+    return (
+      <>
+        <QueryClientProvider client={queryClient}>
+          <Navigation status={loginStatus} />
+
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Registration data={apiData} />} />
+            <Route path='/leaderboards' element={<Leaderboards data={apiData} data2={data} />} />
+            <Route path='/wervers' element={<Wervers data={apiData} />} />
+            <Route path='/backup-lbs' element={<BackupLBs />} />
+            <Route path='/tables' element={<Tables />} />
+            <Route path='/pas-aanvraag' element={<Pasjes />} />
+          </Routes>
+        </QueryClientProvider>
+      </>
+    );
   }
 }
 

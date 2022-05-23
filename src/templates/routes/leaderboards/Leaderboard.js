@@ -11,7 +11,7 @@ export default function Leaderboard(props) {
     const st = ["Boris Ruijtenbeek","Brett Taument","David Migo","Giovanni Melissant",
     "Joep Koolen", "Luuc Marchand","Quentin Booi"]
     const promotors = ["Oscar Martinez","Rosa de Kiefte","Simon Knotnerus"]
-    const columnNames = ['Nr.','Naam','TOB','GOB','Werkdagen','Donateurs','Bruto Donateurs','GIB','Uitval']
+    const columnNames = ['Nr.','Naam','GOB','TOB','Werkdagen','Donateurs','Bruto Donateurs','GIB','Uitval']
     const columns = columnNames.map(col => <th key={col} className='p-1'>{col}</th>)
     console.log(allData)
     if(name === 'algemeen') {
@@ -73,14 +73,14 @@ export default function Leaderboard(props) {
         })
 
         const rowsPromotors = promotorData.map(function (tr) {
-            if(parseFloat(tr[3].replace('€ ','').replace(',','.')) >= 40) {
+            if(parseFloat(tr[2].replace('€ ','').replace(',','.')) >= 40) {
                 return <tr className={`bg-green-400`} key={tr}>{tr.map((td, indexKey) => <td className='p-1 border-b-2 border-black' key={indexKey}>{td}</td>)}</tr>
             }   
             return <tr key={tr}>{tr.map((td, indexKey) => <td className='p-1 border-b-2 border-black' key={indexKey}>{td}</td>)}</tr> 
         })
 
         const rowsST = stData.map(function (tr) {
-            if(parseFloat(tr[3].replace('€ ','').replace(',','.')) >= 40) {
+            if(parseFloat(tr[2].replace('€ ','').replace(',','.')) >= 30) {
                 return <tr className={`bg-green-400`} key={tr}>{tr.map((td, indexKey) => <td className='p-1 border-b-2 border-black' key={indexKey}>{td}</td>)}</tr>
             }   
             return <tr key={tr}>{tr.map((td, indexKey) => <td className='p-1 border-b-2 border-black' key={indexKey}>{td}</td>)}</tr> 

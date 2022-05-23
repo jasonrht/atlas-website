@@ -37,7 +37,7 @@ export default function BackupLBs() {
 
   React.useEffect(() => {
     try {
-      fetch("http://localhost:3001/backups")
+      fetch("https://atlas-website-backend.herokuapp.com/backups")
       .then((res) => res.json())
       .then((apiData) => {
         console.log(apiData)

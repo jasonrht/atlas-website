@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blue: {
-          1000: '#11b8de',
+        atlas: {
+          'blue': '#11b8de',
         }
       }
     }
