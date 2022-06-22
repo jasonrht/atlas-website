@@ -52,10 +52,10 @@ export default function Table(props) {
   return (
     <>
       <h1 className='text-center mb-3'>{tableName}</h1>
-      <table className='w-10/12 bg-slate-100 border-1 border-black rounded-t-md overflow-hidden mb-3 ml-auto mr-auto 
-                          transform transition duration-500 shadow-lg hover:scale-[1.025]'>
+      <table className='w-10/12 bg-slate-100 border-2 border-black rounded-t-md mb-3 ml-auto mr-auto 
+                          transform transition duration-500 shadow-lg'>
         <thead >
-          <tr className='bg-blue-1000'>
+          <tr className='bg-blue-1000 border-b-2'>
             <th key='index' className='p-1'>Nr.</th>
             <th key='name' className='p-1'>Naam</th>
             <th key='gob' className='p-1'>GOB</th>

@@ -11,6 +11,9 @@ import axios from 'axios';
 import BackupLBs from './templates/routes/BackupLBs';
 import Tables from './templates/routes/Tables';
 import Pasjes from './templates/routes/Pasjes';
+import Home from './templates/routes/Home'
+import AanvraagSucces from './templates/routes/AanvraagSucces';
+import LbTable from './templates/routes/LbTable';
 
 
 const queryClient = new QueryClient()
@@ -61,16 +64,19 @@ function App() {
       <>
         <QueryClientProvider client={queryClient}>
           <Navigation status={loginStatus} />
-
-          <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Registration data={apiData} />} />
-            <Route path='/leaderboards' element={<Leaderboards data={apiData} data2={data} />} />
-            <Route path='/wervers' element={<Wervers data={apiData} />} />
-            <Route path='/backup-lbs' element={<BackupLBs />} />
-            <Route path='/tables' element={<Tables />} />
-            <Route path='/pas-aanvraag' element={<Pasjes />} />
-          </Routes>
+          <div className='flex justify-center'>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Registration data={apiData} />} />
+              <Route path='/leaderboards' element={<LbTable names='' tableName='Atlas Rotterdam' />} />
+              <Route path='/wervers' element={<Wervers data={apiData} />} />
+              <Route path='/backup-lbs' element={<BackupLBs />} />
+              <Route path='/tables' element={<Tables />} />
+              <Route path='/pas-aanvraag' element={<Pasjes />} />
+              <Route path='/aanvraag-succes' element={<AanvraagSucces />} />
+            </Routes>
+          </div>
         </QueryClientProvider>
       </>
     );

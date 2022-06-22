@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         atlas: {
           'blue': '#11b8de',
+          'gold': '#d4af37',
+          'silver': '#aaa9ad',
+          'bronze': '#a97142',
         }
       }
     }
